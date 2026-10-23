@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Game.Scripts.Gameplay
 {
-    public class CharacterMover : IInitializable, ITickable
+    public class PlayerCharacterMover : IInitializable, ITickable
     {
         private IInputService _inputService;
         private PlayerCharacterView _playerCharacterView;
@@ -18,7 +18,7 @@ namespace Game.Scripts.Gameplay
         private float _currentVerticalAngle = 0.0f;
         private float _gravity = 9.81f;
         
-        public CharacterMover(IInputService inputService, PlayerCharacterView playerCharacterView)
+        public PlayerCharacterMover(IInputService inputService, PlayerCharacterView playerCharacterView)
         {
             _inputService = inputService;
             _playerCharacterView = playerCharacterView;

@@ -7,11 +7,34 @@ namespace Game.Scripts.Gameplay
     {
         [SerializeField] private PlayerCharacterView _playerCharacterPrefab;
         [SerializeField] private Transform _playerCharacterSpawnPoint;
+        [Space(10)]
+        [SerializeField] private SlingView _slingView;
         
         public override void InstallBindings()
         {
             BindPlayerCharacterView();
             BindCharacterMover();
+            
+            BindSlingView();
+            
+            BindPlayerCharacterInteractor();
+        }
+
+        private void BindPlayerCharacterInteractor()
+        {
+            Container
+                .BindInterfacesAndSelfTo<PlayerCharacterPicker>()
+                .AsSingle()
+                .NonLazy();
+        }
+
+        private IfNotBoundBinder BindSlingView()
+        {
+            return Container
+                .Bind<SlingView>()
+                .FromInstance(_slingView)
+                .AsSingle()
+                .NonLazy();
         }
 
         private void BindPlayerCharacterView()
@@ -27,7 +50,7 @@ namespace Game.Scripts.Gameplay
         private void BindCharacterMover()
         {
             Container
-                .BindInterfacesAndSelfTo<CharacterMover>()
+                .BindInterfacesAndSelfTo<PlayerCharacterMover>()
                 .AsSingle()
                 .NonLazy();
         }

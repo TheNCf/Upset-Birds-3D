@@ -11,6 +11,8 @@ namespace Game.Scripts.Core
         
         public event Action JumpPressed;
         public event Action<Vector2> LookChanged;
+        public event Action UsingStarted;
+        public event Action UsingStopped;
         public Vector2 Direction { get; private set; }
         public bool IsUsing { get; private set; }
 
@@ -58,6 +60,11 @@ namespace Game.Scripts.Core
         private void OnUse(InputAction.CallbackContext obj)
         {
             IsUsing = obj.ReadValueAsButton();
+            
+            if (IsUsing)
+                UsingStarted?.Invoke();
+            else
+                UsingStopped?.Invoke();
         }
 
         private void OnMove(InputAction.CallbackContext obj)
