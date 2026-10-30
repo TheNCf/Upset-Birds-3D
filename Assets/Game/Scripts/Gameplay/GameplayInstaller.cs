@@ -8,16 +8,37 @@ namespace Game.Scripts.Gameplay
         [SerializeField] private PlayerCharacterView _playerCharacterPrefab;
         [SerializeField] private Transform _playerCharacterSpawnPoint;
         [Space(10)]
+        [SerializeField] private BirdSpawnerView _birdSpawnerView;
         [SerializeField] private SlingView _slingView;
-        
+
+
         public override void InstallBindings()
         {
             BindPlayerCharacterView();
-            BindCharacterMover();
-            
             BindSlingView();
+            BindBirdSpawnerView();
             
+            BindCharacterMover();
             BindPlayerCharacterInteractor();
+            
+            BindBirdSpawner();
+        }
+
+        private void BindBirdSpawner()
+        {
+            Container
+                .BindInterfacesAndSelfTo<BirdSpawner>()
+                .AsSingle()
+                .NonLazy();
+        }
+
+        private void BindBirdSpawnerView()
+        {
+            Container
+                .Bind<BirdSpawnerView>()
+                .FromInstance(_birdSpawnerView)
+                .AsSingle()
+                .NonLazy();
         }
 
         private void BindPlayerCharacterInteractor()
