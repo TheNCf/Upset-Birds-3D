@@ -2,7 +2,7 @@ using Game.Scripts.Core;
 using UnityEngine;
 using Zenject;
 
-namespace Game.Scripts.Gameplay
+namespace Game.Scripts.Gameplay.Player
 {
     public class PlayerCharacterMover : IInitializable, ITickable
     {

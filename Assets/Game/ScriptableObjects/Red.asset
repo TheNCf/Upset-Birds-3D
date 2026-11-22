@@ -17,3 +17,6 @@ MonoBehaviour:
   <ColliderRadius>k__BackingField: 0.2
   <Type>k__BackingField: 0
   <Visuals>k__BackingField: {fileID: 919132149155446097, guid: 7efa1dc0830f32c4fbbdbfac14219a98, type: 3}
+  <LayerMask>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 8

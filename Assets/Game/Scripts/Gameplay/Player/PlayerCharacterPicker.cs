@@ -1,9 +1,10 @@
 using System;
 using Game.Scripts.Core;
+using Game.Scripts.Gameplay.Interaction;
 using UnityEngine;
 using Zenject;
 
-namespace Game.Scripts.Gameplay
+namespace Game.Scripts.Gameplay.Player
 {
     public class PlayerCharacterPicker : ITickable, IDisposable
     {
@@ -34,10 +35,7 @@ namespace Game.Scripts.Gameplay
 
         private void MoveToHands()
         {
-            if (_pickableMover == null)
-                return;
-            
-            _pickableMover.MoveTo(_view.ObjectHolder.position);
+            _pickableMover?.MoveTo(_view.ObjectHolder.position, _view.ObjectHolder);
         }
 
         private void OnUseStart()
@@ -48,7 +46,7 @@ namespace Game.Scripts.Gameplay
                 return;
 
             if (hit.collider.TryGetComponent(out IPickableView pickableView))
-                _pickableMover = pickableView.PickableMover;
+                _pickableMover = pickableView.Mover;
         }
 
         private void OnUseStop()
@@ -56,7 +54,7 @@ namespace Game.Scripts.Gameplay
             if (_pickableMover == null)
                 return;
             
-            _pickableMover.Drop();
+            _pickableMover.Drop(_view.ObjectHolder);
             _pickableMover = null;
         }
     }

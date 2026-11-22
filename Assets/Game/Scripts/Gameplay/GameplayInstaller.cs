@@ -1,3 +1,6 @@
+using Game.Scripts.Gameplay.Birds;
+using Game.Scripts.Gameplay.Player;
+using Game.Scripts.Gameplay.Sling;
 using UnityEngine;
 using Zenject;
 

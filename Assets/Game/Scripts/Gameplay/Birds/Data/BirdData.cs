@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game.Scripts.Gameplay.ScriptableObjects
+namespace Game.Scripts.Gameplay.Birds.Data
 {
     [CreateAssetMenu(menuName = "Game/BirdData")]
     public class BirdData : ScriptableObject
@@ -10,5 +10,6 @@ namespace Game.Scripts.Gameplay.ScriptableObjects
         [field: SerializeField] public float ColliderRadius { get; private set; }
         [field: SerializeField] public BirdType Type { get; private set; }
         [field: SerializeField] public GameObject Visuals { get; private set; }
+        [field: SerializeField] public LayerMask LayerMask { get; private set; }
     }
 }

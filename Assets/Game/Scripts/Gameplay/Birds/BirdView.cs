@@ -1,7 +1,7 @@
-using System;
+using Game.Scripts.Gameplay.Interaction;
 using UnityEngine;
 
-namespace Game.Scripts.Gameplay
+namespace Game.Scripts.Gameplay.Birds
 {
     [RequireComponent(typeof(Rigidbody), typeof(SphereCollider))]
     public class BirdView : MonoBehaviour, IPickableView
@@ -13,8 +13,10 @@ namespace Game.Scripts.Gameplay
         {
             Rigidbody = GetComponent<Rigidbody>();
             Collider = GetComponent<SphereCollider>();
+            
+            Mover = new BirdMover(this);
         }
 
-        public IPickableMover PickableMover { get; }
+        public IPickableMover Mover { get; private set; }
     }
 }

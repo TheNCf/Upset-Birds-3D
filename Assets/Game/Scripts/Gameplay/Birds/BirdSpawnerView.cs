@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using Game.Scripts.Gameplay.ScriptableObjects;
+using Game.Scripts.Gameplay.Birds.Data;
 using UnityEngine;
 
-namespace Game.Scripts.Gameplay
+namespace Game.Scripts.Gameplay.Birds
 {
     public class BirdSpawnerView : MonoBehaviour
     {
