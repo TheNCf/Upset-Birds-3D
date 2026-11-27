@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Game.Scripts.Gameplay.Player
 {
-    public class PlayerCharacterMover : IInitializable, ITickable
+    public class PlayerCharacterMover : ITickable
     {
         private IInputService _inputService;
         private PlayerCharacterView _playerCharacterView;
@@ -29,11 +29,9 @@ namespace Game.Scripts.Gameplay.Player
             
             _inputService.JumpPressed += Jump;
             _inputService.LookChanged += Rotate;
-        }
-
-        public void Initialize()
-        {
+            
             _playerCharacterView.transform.parent = null;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         public void Tick()

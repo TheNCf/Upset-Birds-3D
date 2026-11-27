@@ -10,8 +10,6 @@ namespace Game.Scripts.Gameplay.Sling
         private readonly Vector3 _startPosition;
         private readonly Quaternion _startRotation;
 
-        private Transform _owner = null;
-
         public SlingMover(SlingView slingView)
         {
             _slingView = slingView;
@@ -20,30 +18,20 @@ namespace Game.Scripts.Gameplay.Sling
             _startRotation = _slingView.transform.rotation;
         }
 
-        public void MoveTo(Vector3 position, Transform owner)
+        public void MoveTo(Transform owner)
         {
-            if (_owner == false)
-                _owner = owner;
+            if (Vector3.Distance(_startPosition, owner.position) > _slingView.MaxDistance)
+                owner.position = (owner.position - _startPosition).normalized * _slingView.MaxDistance + _startPosition;
             
-            if (_owner.Equals(owner) == false)
-                return;
-            
-            if (Vector3.Distance(_startPosition, position) > _slingView.MaxDistance)
-                position = (position - _startPosition).normalized * _slingView.MaxDistance + _startPosition;
-            
-            _slingView.transform.position = position;
-            _slingView.transform.rotation = Quaternion.LookRotation(position - _startPosition) *  Quaternion.Euler(180, -90, 0);
+            _slingView.transform.position = owner.position;
+            _slingView.transform.rotation = Quaternion.LookRotation(owner.position - _startPosition) 
+                                            * Quaternion.Euler(180, -90, 0);
         }
         
-        public void Drop(Transform owner)
+        public void Drop()
         {
-            if (owner.Equals(_owner) == false)
-                return;
-            
             _slingView.transform.position = _startPosition;
             _slingView.transform.rotation = _startRotation;
-            
-            _owner = null;
         }
     }
 }

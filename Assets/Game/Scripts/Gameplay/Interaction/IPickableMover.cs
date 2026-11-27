@@ -4,8 +4,8 @@ namespace Game.Scripts.Gameplay.Interaction
 {
     public interface IPickableMover
     {
-        void MoveTo(Vector3 position, Transform owner);
+        void MoveTo(Transform owner);
 
-        void Drop(Transform owner);
+        void Drop();
     }
 }

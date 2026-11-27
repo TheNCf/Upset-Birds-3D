@@ -35,7 +35,7 @@ namespace Game.Scripts.Gameplay.Player
 
         private void MoveToHands()
         {
-            _pickableMover?.MoveTo(_view.ObjectHolder.position, _view.ObjectHolder);
+            _pickableMover?.MoveTo(_view.ObjectHolder);
         }
 
         private void OnUseStart()
@@ -54,7 +54,7 @@ namespace Game.Scripts.Gameplay.Player
             if (_pickableMover == null)
                 return;
             
-            _pickableMover.Drop(_view.ObjectHolder);
+            _pickableMover.Drop();
             _pickableMover = null;
         }
     }
